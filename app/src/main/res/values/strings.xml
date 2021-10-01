@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab05</string>
+    <string name="event_counts">onCreate: %1$d\nonStart: %2$d\nonResume: %3$d\nonPause: %4$d\n
+    onStop: %5$d\nonRestart: %6$d\nonDestroy: %7$d</string>
+</resources>
