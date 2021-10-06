@@ -31,6 +31,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="resetCurrent"
         android:layout_marginLeft="36dp"
         app:layout_constraintLeft_toRightOf="@id/first"
         app:layout_constraintTop_toBottomOf="@id/currentTitle"
@@ -38,6 +39,7 @@
         android:text="Reset"/>
 
     <TextView
+        android:id="@+id/lifetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/second"
@@ -46,6 +48,7 @@
         android:text="Lifetime"
         android:textStyle="bold"
         />
+
     <TextView
         android:id="@+id/second"
         android:layout_width="wrap_content"
@@ -56,6 +59,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/first"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintVertical_bias="0.235" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetLifetime"
+        android:layout_marginLeft="36dp"
+        app:layout_constraintLeft_toRightOf="@id/second"
+        app:layout_constraintTop_toBottomOf="@id/lifetime"
+        tools:layout_editor_absoluteY="252dp"
+        android:text="Reset"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

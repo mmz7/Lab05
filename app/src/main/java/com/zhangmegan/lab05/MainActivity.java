@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,97 +31,96 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        countonCreate++;
-        lifeonCreate++;
         current = findViewById(R.id.first);
         lifetime = findViewById(R.id.second);
         sp = getSharedPreferences("zmlab05", MODE_PRIVATE);
         editor = sp.edit();
+        getVal();
+        countonCreate++;
+        lifeonCreate++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        getVal();
         countonStart++;
         lifeonStart++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        setVal();
-        getVal();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getVal();
         countonResume++;
         lifeonResume++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        getVal();
         countonPause++;
         lifeonPause++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+        getVal();
         countonRestart++;
         lifeonRestart++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        getVal();
         countonStop++;
         lifeonStop++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        getVal();
         countonDestroy++;
         lifeonDestroy++;
+        setVal();
         current.setText(getString(R.string.event_counts, countonCreate, countonStart,
                 countonResume, countonPause, countonStop, countonRestart, countonDestroy));
         lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
                 lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
-        getVal();
-        setVal();
     }
 
     private void setVal() {
@@ -143,5 +143,32 @@ public class MainActivity extends AppCompatActivity {
         lifeonStop = sp.getInt("onStop", 0);
         lifeonRestart = sp.getInt("onRestart", 0);
         lifeonDestroy = sp.getInt("onDestroy", 0);
+    }
+
+    public void resetCurrent(View view) {
+        countonCreate = 0;
+        countonStart = 0;
+        countonResume = 0;
+        countonPause = 0;
+        countonStop = 0;
+        countonRestart = 0;
+        countonDestroy = 0;
+        current.setText(getString(R.string.event_counts, countonCreate, countonStart,
+                countonResume, countonPause, countonStop, countonRestart, countonDestroy));
+    }
+
+    public void resetLifetime(View view) {
+        lifeonCreate = 0;
+        lifeonStart = 0;
+        lifeonResume = 0;
+        lifeonPause = 0;
+        lifeonStop = 0;
+        lifeonRestart = 0;
+        lifeonDestroy = 0;
+
+        setVal();
+
+        lifetime.setText(getString(R.string.event_counts, lifeonCreate, lifeonStart, lifeonResume,
+                lifeonPause, lifeonStop, lifeonRestart, lifeonDestroy));
     }
 }
